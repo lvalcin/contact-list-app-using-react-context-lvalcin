@@ -29,6 +29,8 @@ export const Home = () => {
 	})
 	.then((data)=> console.log(data, "agenda created"))
 	} 
+
+	//function to retreieve contacts
 const getData= ()=>{
 	fetch("https://playground.4geeks.com/contact/agendas/lvalcin/contacts")
 	.then((resp)=>{
