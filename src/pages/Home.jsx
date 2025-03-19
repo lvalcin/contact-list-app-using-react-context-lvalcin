@@ -1,9 +1,17 @@
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
+
+import { ContactSubmit } from "./ContactSubmit.jsx";
 export const Home = () => {
 
   const {store, dispatch} =useGlobalReducer()
+  const[contactArray,setContactArray]=useState([])
+
+//   contactArray.map()=>{
+// 	return 
+//   }
+
 
 //This is a post request
  const createAgenda = ()=>{
@@ -27,8 +35,9 @@ export const Home = () => {
 	}
 	return resp.json()
 	})
-	.then((data)=> console.log(data, "agenda created"))
+	.then((data)=> console.log(data, "this is my agenda")) 
 	} 
+	
 
 	//function to retreieve contacts
 const getData= ()=>{
@@ -41,7 +50,11 @@ const getData= ()=>{
 		else{
 			return resp.json()
 	}})
-	.then((data)=>console.log(data))
+	.then((data)=>{console.log(data.contacts, "here are the contacts") //am I accessing the array of contacts??
+	setContactArray(data.contacts)
+	console.log("this is my state ",contactArray )
+
+})
 }
 useEffect(()=>{
 	getData();

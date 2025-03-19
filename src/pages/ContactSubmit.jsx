@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 export const ContactSubmit = () => {
-    const[name,setName]=useState("")
-    const[phone,setPhone]=useState("")
-    const[email,setEmail]=useState("")
-    const[address,setAddress]=useState("")
+    const[nameInput,setNameInput]=useState("")
+    const[phoneInput,setphoneInput]=useState("")
+    const[emailInput,setEmailInput]=useState("")
+    const[addressInput,setAddressInput]=useState("")
 
     // {
     //     "name": "string",
@@ -19,10 +19,10 @@ export const ContactSubmit = () => {
 				"Content-Type": "application/json"
 			},
 			body:JSON.stringify({
-                "name": name,
-                "phone": phone,
-                "email": email,
-                "address": address
+                "name": nameInput,
+                "phone": phoneInput,
+                "email": emailInput,
+                "address": addressInput
               })
 		}
         fetch("https://playground.4geeks.com/contact/agendas/lvalcin/contacts",option)
@@ -31,10 +31,10 @@ export const ContactSubmit = () => {
       } 
     return(
 	<div>
-        <input onChange={(e)=>setName(e.target.value)}type="text" placeholder="name"/>
-        <input onChange={(e)=>setPhone(e.target.value)}type="text" placeholder="phone"/>
-        <input onChange={(e)=>setEmail(e.target.value)}type="text" placeholder="email"/>
-        <input onChange={(e)=>setAddress(e.target.value)}type="text" placeholder="address"/>
+        <input onChange={(e)=>setNameInput(e.target.value)}type="text" placeholder="name"/>
+        <input onChange={(e)=>setphoneInput(e.target.value)}type="text" placeholder="phone"/>
+        <input onChange={(e)=>setEmailInput(e.target.value)}type="text" placeholder="email"/>
+        <input onChange={(e)=>setAddressInput(e.target.value)}type="text" placeholder="address"/>
         <button onClick={submitContact}>Submit</button>
     </div>
     )
