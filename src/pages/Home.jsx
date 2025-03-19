@@ -52,7 +52,7 @@ const getData= ()=>{
 	}})
 	.then((data)=>{console.log(data.contacts, "here are the contacts") //am I accessing the array of contacts??
 	setContactArray(data.contacts)
-	console.log("this is my state ",contactArray )
+	console.log("this is my state! ",contactArray )
 
 })
 }
@@ -62,6 +62,19 @@ useEffect(()=>{
 	return (
 		<div className="text-center mt-5">
 			<h1>Hello Rigo!!</h1>
+
+			{contactArray.map(
+				(contact)=>{
+				return (
+					<div className="record">
+						{contact.item}
+						<span className ="delete-btn">
+
+						</span>
+						{console.log(contact, " this is my mapping! ")}
+					</div>
+				)}
+			)}
 			<p>
 				<img src={rigoImageUrl} />
 			</p>
