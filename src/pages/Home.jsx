@@ -57,12 +57,13 @@ useEffect(()=>{
 },[])
 
 	return (
-	<div>
+	<div className="container">
+		<h1>My Contacts</h1>
 		{store.contactArray.length > 0 ? 
 			store.contactArray.map(
 				(contacts)=>{
 					return(
-						<div className= "m-3">
+						<div className= "contactCard m-3 p-2 rounded-3 border-3">
 							<div>name: {contacts.name}</div>
 							<div>email: {contacts.email}</div>
 							<div>phone: {contacts.phone}</div>
@@ -73,9 +74,9 @@ useEffect(()=>{
 									()=>{
 									dispatch({ type:"set_single_contact", payload:contacts})
 								}}
-								
 								>Edit</button>
 							</Link>
+							<button>Delete</button>
 						</div>
 					)
 				})
