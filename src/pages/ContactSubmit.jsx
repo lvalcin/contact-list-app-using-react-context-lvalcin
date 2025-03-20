@@ -4,10 +4,10 @@ import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 export const ContactSubmit = () => {
     const {store, dispatch} =useGlobalReducer()
 
-    const[nameInput,setNameInput]=useState(store.singleContact.nameInput)
-    const[phoneInput,setPhoneInput]=useState(store.singleContact.phoneInput)
-    const[emailInput,setEmailInput]=useState(store.singleContact.emailInput)
-    const[addressInput,setAddressInput]=useState(store.singleContact.addressInput)
+    const[nameInput,setNameInput]=useState(store.singleContact.name)
+    const[phoneInput,setPhoneInput]=useState(store.singleContact.phone)
+    const[emailInput,setEmailInput]=useState(store.singleContact.email)
+    const[addressInput,setAddressInput]=useState(store.singleContact.address)
 
     // {
     //     "name": "",
