@@ -1,16 +1,13 @@
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 
 import { ContactSubmit } from "./ContactSubmit.jsx";
 export const Home = () => {
 
   const {store, dispatch} =useGlobalReducer()
   const[contactArray,setContactArray]=useState([])
-
-//   contactArray.map()=>{
-// 	return 
-//   }
 
 
 //This is a post request
@@ -50,34 +47,43 @@ const getData= ()=>{
 		else{
 			return resp.json()
 	}})
-	.then((data)=>{console.log(data.contacts, "here are the contacts") //am I accessing the array of contacts??
-	setContactArray(data.contacts)
-	console.log("this is my state! ",contactArray )
-
-})
+	.then((data)=>{
+		dispatch({type: "set_contact_list",payload:data.contacts})
+	})
 }
+
 useEffect(()=>{
 	getData();
 },[])
+
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
+	<div>
+		{store.contactArray.length > 0 ? 
+			store.contactArray.map(
+				(contacts)=>{
+					return(
+						<div className= "m-3">
+							<div>name: {contacts.name}</div>
+							<div>email: {contacts.email}</div>
+							<div>phone: {contacts.phone}</div>
+							<div>address: {contacts.address}</div>
+							<Link to="/submit">
+								<button
+								onClick={
+									()=>{
+									dispatch({ type:"set_single_contact", payload:contacts})
+								}}
+								
+								>Edit</button>
+							</Link>
+						</div>
+					)
+				})
+				:
+				"no contacts found"
+			}
 
-			{contactArray.map(
-				(contact)=>{
-				return (
-					<div className="record">
-						{contact.item}
-						<span className ="delete-btn">
-
-						</span>
-						{console.log(contact, " this is my mapping! ")}
-					</div>
-				)}
-			)}
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-		</div>
+	</div>
 	);
 };
+
