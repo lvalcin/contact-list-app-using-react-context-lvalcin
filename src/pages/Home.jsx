@@ -81,8 +81,11 @@ const deleteContact = async (id) => {
 			store.contactArray.map(
 				(contacts)=>{
 					return(
-						<div key={contacts.id} className="contactCard m-3 p-2 rounded-3 border border-black">
-						
+						<div key={contacts.id} className="contactCard d-flex justify-content-start m-3 p-2 rounded-3 border border-black ">
+							<div>
+							 <img src= "https://placehold.co/600x400/000000/FFFFFF/png" className="me-5 card-img-top rounded-circle mx-auto border border-dark" alt="Contact" style={{ width: '150px', height: '150px' }} />
+							</div>
+						<div className="d-flex flex-column">
 							<div>
 								{/* <h3>Name:</h3>  */}
 								<h3>{contacts.name}</h3>
@@ -108,8 +111,9 @@ const deleteContact = async (id) => {
 								<strong>Address:</strong> 
 								{contacts.address}
 							</div>
+						</div>
 						
-						<div>
+						<div className="  flex-justify-content-end ms-auto">
 							<Link to="/submit">
 								<button
 								className="me-1 rounded"
