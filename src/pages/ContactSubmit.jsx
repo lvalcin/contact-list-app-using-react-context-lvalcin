@@ -53,11 +53,11 @@ export const ContactSubmit = () => {
       } 
 
     return(
-	<div>
-        <input onChange={(e)=>setNameInput(e.target.value)} value={nameInput} type="text" placeholder="name"/>
-        <input onChange={(e)=>setPhoneInput(e.target.value)} value={phoneInput} type="text" placeholder="phone"/>
-        <input onChange={(e)=>setEmailInput(e.target.value)} value={emailInput} type="text" placeholder="email"/>
-        <input onChange={(e)=>setAddressInput(e.target.value)} value={addressInput} type="text" placeholder="address"/>
+	<div className="container">
+        <input onChange={(e)=>setNameInput(e.target.value)} value={nameInput} type="text" className="form-control py-3 mb-3" placeholder="name"/>
+        <input onChange={(e)=>setPhoneInput(e.target.value)} value={phoneInput} type="text" className="form-control py-3 mb-3" placeholder="phone"/>
+        <input onChange={(e)=>setEmailInput(e.target.value)} value={emailInput} type="text" className="form-control py-3 mb-3" placeholder="email"/>
+        <input onChange={(e)=>setAddressInput(e.target.value)} value={addressInput} type="text" className="form-control py-3 mb-3" placeholder="address"/>
         <button onClick={submitContact}>Submit</button>
         <button onClick={()=>updateContact(store.singleContact.id)}>Update</button>
     </div>
