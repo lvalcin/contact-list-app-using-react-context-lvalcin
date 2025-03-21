@@ -7,32 +7,29 @@ export const initialStore=()=>{
 }
 
 export default function storeReducer(store, action = {}) {
-if(action.type=="set_contact_list"){
-  // below is logic to save contacts array
-  return{
-    ...store, 
-  contactArray: action.payload
-}
-}
-
-if(action.type=="set_single_contact"){
-  // below is logic to save contacts array
-  return{
-    ...store, 
-  singleContact: action.payload
-}
-}
-
-  switch(action.type){
-    case 'add_task':
-
-      const { id,  color } = action.payload
-
+  switch (action.type) {
+    case "set_contact_list":
       return {
         ...store,
-        todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
+        contactArray: action.payload
       };
+
+    case "set_single_contact":
+      return {
+        ...store,
+        singleContact: action.payload
+      };
+
+    case "delete_contact":
+      console.log("Before delete:", store.contactArray);
+      const updatedList = store.contactArray.filter(contact => contact.id !== action.payload);
+      console.log("After delete:", updatedList);
+      return {
+        ...store,
+        contactArray: updatedList
+      };
+
     default:
-      throw Error('Unknown action.');
-  }    
+      console.warn("Unknown action: " + action.type);
+  }
 }

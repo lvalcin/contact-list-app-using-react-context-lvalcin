@@ -9,6 +9,9 @@ export const Home = () => {
   const {store, dispatch} =useGlobalReducer()
   const[contactArray,setContactArray]=useState([])
 
+  useEffect(()=>{
+	getData();
+},[])
 
 //This is a post request
  const createAgenda = ()=>{
@@ -40,7 +43,7 @@ export const Home = () => {
 const getData= ()=>{
 	fetch("https://playground.4geeks.com/contact/agendas/lvalcin/contacts")
 	.then((resp)=>{
-		console.log(resp)
+		console.log("Reponse from getData:", resp)
 		if (resp.ok==false){
 			createAgenda()
 		}
@@ -52,18 +55,35 @@ const getData= ()=>{
 	})
 }
 
-useEffect(()=>{
-	getData();
-},[])
+// Delete method
+const deleteContact = async (id) => {
+	console.log("Dispatching delete_contact for id:", id);
+
+	const option = {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json"
+		}
+	};
+
+	 await fetch(`https://playground.4geeks.com/contact/agendas/lvalcin/contacts/${id}`, option);
+	
+
+	// console.log("Delete response:", data);
+	dispatch({ type: "delete_contact", payload: id });
+	// getData()
+}
+
+
 
 	return (
 	<div className="container">
-		<h1>My Contacts</h1>
+		<h1 className="text-center">My Contacts</h1>
 		{store.contactArray.length > 0 ? 
 			store.contactArray.map(
 				(contacts)=>{
 					return(
-						<div className= "contactCard m-3 p-2 rounded-3 border-3">
+						<div key={contacts.id} className="contactCard m-3 p-2 rounded-3 border border-black">
 							<div>name: {contacts.name}</div>
 							<div>email: {contacts.email}</div>
 							<div>phone: {contacts.phone}</div>
@@ -76,7 +96,10 @@ useEffect(()=>{
 								}}
 								>Edit</button>
 							</Link>
-							<button>Delete</button>
+							<button
+							onClick={
+								()=>deleteContact(contacts.id)}
+								>Delete</button>
 						</div>
 					)
 				})

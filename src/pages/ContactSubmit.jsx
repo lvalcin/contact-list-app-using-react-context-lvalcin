@@ -51,6 +51,7 @@ export const ContactSubmit = () => {
         .then((resp)=>resp.json())
         .then((data)=>console.log(data,"contact cretaed"))
       } 
+
     return(
 	<div>
         <input onChange={(e)=>setNameInput(e.target.value)} value={nameInput} type="text" placeholder="name"/>
