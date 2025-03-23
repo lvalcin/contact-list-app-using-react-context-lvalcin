@@ -87,7 +87,6 @@ const deleteContact = async (id) => {
 							</div>
 						<div className="d-flex flex-column">
 							<div>
-								{/* <h3>Name:</h3>  */}
 								<h3>{contacts.name}</h3>
 							</div>
 							<div>

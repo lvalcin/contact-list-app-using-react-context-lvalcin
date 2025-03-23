@@ -8,7 +8,7 @@ export const Navbar = () => {
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+					<span className="navbar-brand mb-0 h1">Go to Contact List</span>
 				</Link>
 				<div className="ml-auto">
 					<Link to="/submit">
@@ -22,7 +22,7 @@ export const Navbar = () => {
 							}
 							dispatch({ type:"set_single_contact", payload:emptyContact })
 						}}
-						className="btn btn-primary"
+						className="btn btn-success"
 						>
 							Add New Contact
 						</button>
